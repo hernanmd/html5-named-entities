@@ -1,0 +1,18 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #baseline : 'XHTMLNamedEntities',
+      #directory : 'src',
+      #platforms : [ #pharo ],
+      #ignoreImage : true,
+      #onConflict: #useIncoming,
+      #onUpgrade : #useIncoming,
+      #onWarningLog : true
+    }
+  ],
+  #testing : {
+   #include : {
+      #packages : ['XHTMLNamedEntities.*']
+    }
+  }
+}
