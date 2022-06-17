@@ -27,3 +27,11 @@ BaselineOfXHTMLNamedEntities >> neoCsv: spec [
 		baseline: 'NeoCSV'
 		with: [ spec repository: 'github://svenvc/NeoCSV/repository' ].
 ]
+
+{ #category : #baselines }
+BaselineOfXHTMLNamedEntities >> postLoad [
+	"Download required TSV file"
+	"postLoadDoIt: #'postLoadDoIt';"
+	
+	ZnClient get: ''
+]
