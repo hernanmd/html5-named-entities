@@ -10,6 +10,7 @@ BaselineOfXHTMLNamedEntities >> baseline: spec [
 	spec
 		for: #(common)
 		do: [ 
+			spec postLoadDoIt: #'postLoad'.	
 			self neoCsv: spec.
 			spec 
 				package: 'XHTMLNamedEntities' 			with: [ spec requires: #(NeoCSV) ];
@@ -18,6 +19,23 @@ BaselineOfXHTMLNamedEntities >> baseline: spec [
 				group: 'Core' 						with: #('XHTMLNamedEntities');
 				group: 'Tests' 						with: #('XHTMLNamedEntities' 'XHTMLNamedEntities-Tests');
 				group: 'default' 					with: #('Core' 'Tests') ]
+]
+
+{ #category : #baselines }
+BaselineOfXHTMLNamedEntities >> httpClient [
+
+	^ ZnClient new
+		accept: ZnMimeType text;	
+		systemPolicy;
+		signalProgress: true;	
+		ifFail: [ :exception | self error: 'Could not download : ', exception printString ]
+		yourself.
+]
+
+{ #category : #baselines }
+BaselineOfXHTMLNamedEntities >> namedEntitiesResource [
+
+	^ 'https://raw.githubusercontent.com/hernanmd/html5-named-entities/master/named_entities.csv'
 ]
 
 { #category : #baselines }
@@ -31,7 +49,9 @@ BaselineOfXHTMLNamedEntities >> neoCsv: spec [
 { #category : #baselines }
 BaselineOfXHTMLNamedEntities >> postLoad [
 	"Download required TSV file"
-	"postLoadDoIt: #'postLoadDoIt';"
 	
-	ZnClient get: ''
+	self httpClient 
+		url: self namedEntitiesResource asZnUrl;
+		downloadTo: FileLocator imageDirectory
+	
 ]
