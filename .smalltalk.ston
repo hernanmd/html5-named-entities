@@ -13,7 +13,7 @@ SmalltalkCISpec {
   #testing : {
     #coverage : {
       #packages : [ 'XHTMLNamedEntities*' ],
-      #format : #coveralls
+      #format : #lcov      
     }
   }
 }
