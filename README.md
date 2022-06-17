@@ -14,7 +14,7 @@
 
 # Description
 
-Provides a simple reader of W3C named entities reference to a Dictionary mapping the glyphs to names (&Aogon;, &Cedilla;, etc). Code points are not included.
+Provides a simple reader of W3C named entities reference to a Dictionary mapping the glyphs (&Aogon;, &Cedilla;, &digamma;, etc) to names (`&Aogon;`,`&Cedilla;`,`&digamma;`, etc). Code points are not included.
 
 # Installation
 
