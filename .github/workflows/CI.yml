@@ -1,13 +1,6 @@
 name: CIMatrix
 
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+on: [push, pull_request, workflow_dispatch]  
 
 jobs:
   build:
@@ -15,6 +8,7 @@ jobs:
       matrix:
         smalltalk: [ Pharo64-10 ]
         os: [ ubuntu-latest] # macos-latest, windows-latest,
+        ston: [ .smalltalk.ston ]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
     steps:
@@ -24,7 +18,7 @@ jobs:
         with:
           smalltalk-version: ${{ matrix.smalltalk }}
       - name: Load Image and Run Tests
-        run: smalltalkci -s ${{ matrix.smalltalk }}
+        run: smalltalkci -s ${{ matrix.smalltalk }} ${{ matrix.ston }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15
