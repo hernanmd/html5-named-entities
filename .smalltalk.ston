@@ -11,9 +11,9 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-   #include : {
-      #packages : ['XHTMLNamedEntities*'],
-      #format: #lcov      
+    #coverage : {
+      #packages : [ 'XHTMLNamedEntities*' ],
+      #format : #coveralls
     }
   }
 }
